@@ -1,0 +1,39 @@
+//读取1到100之间的整数，然后计算每个数出现的次数。
+import java.util.Scanner;
+
+public class Lab_work2_01 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int num[] = new int[100];     //存放数值
+        int num_count[] = new int[100];   //存放出现次数
+        int count = 0;  //数组内元素个数
+        int n = input.nextInt();
+        while (n != 0 && (n > 0 && n <= 100)) {//创建自定义数组
+            num[count] = n;
+            count++;
+            n = input.nextInt();
+        }
+        getCount(num, count);
+    }
+
+    private static void getCount(int arr[], int n) {
+        loop:
+        for (int i = 0; i < n; i++) {
+            //比较之前输出的的语句是否有曾经输出过的元素值
+            for (int j = 0; j < i; j++) {
+                if (arr[i] == arr[j]) {
+                    continue loop;
+                }
+            }
+            //判断元素值出现的次数并且打印出输出次数.
+            int count = 0;  //计算元素出现次数
+            for (int j = 0; j < n; j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
+                }
+            }
+            System.out.println(arr[i] + "共出现" + count + "次");
+        }
+
+    }
+}
